@@ -81,7 +81,7 @@ input, textarea {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #E8F0FE;
+  border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
 }
