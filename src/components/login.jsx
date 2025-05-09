@@ -20,9 +20,7 @@ const Login = () => {
             const result = await login({ username, password }).unwrap();
 
             if (result.token) {
-
                 localStorage.setItem('token', result.token);
-
                 navigate('/');
             }
         } catch (err) {

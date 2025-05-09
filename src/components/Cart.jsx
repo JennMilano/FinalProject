@@ -1,10 +1,12 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, updateQuantity } from '../store/cartSlice';
+import { getCart } from '../redux/userSlice';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const dispatch = useDispatch();
-    const { items, total } = useSelector((state) => state.cart);
+    const cart = useSelector((state) => state.auth.cart);
 
     const handleQuantityChange = (id, quantity) => {
         dispatch(updateQuantity({ id, quantity: parseInt(quantity) }));
@@ -14,7 +16,7 @@ const Cart = () => {
         dispatch(removeFromCart(id));
     };
 
-    if (items.length === 0) {
+    if (!cart || cart.length === 0) {
         return (
             <section className="cart-container">
                 <h2>Your Cart</h2>
@@ -30,7 +32,7 @@ const Cart = () => {
         <section className="cart-container">
             <h2>Your Cart</h2>
             <div className="cart-items">
-                {items.map((item) => (
+                {cart.map((item) => (
                     <div key={item.id} className="cart-item">
                         <img 
                             src={item.img_url} 
@@ -46,7 +48,7 @@ const Cart = () => {
                                     type="number"
                                     id={`quantity-${item.id}`}
                                     min="1"
-                                    value={item.quantity}
+                                    value={item.quantity || 1}
                                     onChange={(e) => handleQuantityChange(item.id, e.target.value)}
                                 />
                             </div>
@@ -61,11 +63,11 @@ const Cart = () => {
                 ))}
             </div>
             <div className="cart-summary">
-                <h3>Total: ${total.toFixed(2)}</h3>
+                <h3>Total: ${cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0).toFixed(2)}</h3>
                 <button className="checkout-button">Proceed to Checkout</button>
             </div>
         </section>
     );
 };
 
-export default Cart; 
+export default Cart;

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectToken } from '../redux/authSlice';
-import { logout } from '../redux/authSlice';
+import { selectToken } from '../redux/userSlice';
+import { logout } from '../redux/userSlice';
 import './Navigation.css';
 
 function Navigation() {

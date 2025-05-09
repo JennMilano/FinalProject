@@ -4,30 +4,34 @@ import { useFetchSingleProductQuery } from "../api/API";
 import { Link } from "react-router-dom";
 
 const SingleProduct = () => {
-    const { product_id } = useParams();
-    console.log('Attempting to fetch product with ID:', product_id);
-    console.log('Full URL would be:', `http://localhost:3000/api/products/${product_id}`);
+    const { id } = useParams();
     
-    const { data, isLoading, isError, error } = useFetchSingleProductQuery(product_id);
-    
-    console.log('Product ID:', product_id);
-    console.log('Data:', data);
-    console.log('Loading:', isLoading);
-    console.log('Error:', isError);
-    console.log('Error Details:', error);
+    if (!id) {
+        return (
+            <section>
+                <h2>Invalid Product ID</h2>
+                <p>No product ID provided.</p>
+                <Link to="/products">Return to Products</Link>
+            </section>
+        );
+    }
 
-    if (isLoading) return (
-        <section>
-            <h2>Loading...</h2>
-        </section>
-    );
+    const { data, isLoading, isError, error } = useFetchSingleProductQuery(id);
+
+    if (isLoading) {
+        return (
+            <section>
+                <h2>Loading...</h2>
+            </section>
+        );
+    }
 
     if (isError) {
-        console.log('Full error object:', error);
         return (
             <section>
                 <h2>Error loading product</h2>
                 <p>Error details: {error?.data?.message || error?.message || 'Unknown error'}</p>
+                <Link to="/products">Return to Products</Link>
             </section>
         );
     }
@@ -36,6 +40,7 @@ const SingleProduct = () => {
         return (
             <section>
                 <h2>No product found</h2>
+                <Link to="/products">Return to Products</Link>
             </section>
         );
     }
@@ -45,9 +50,15 @@ const SingleProduct = () => {
             <img src={data.img_url} alt={data.name} />
             <h2>{data.name}</h2>
             <p>{data.description}</p>
-            <p>${data.price}</p>
-            <Link to={`/products/${data.id}/edit`}>Edit</Link>
-            <button onClick={() => handleDelete(data.id)}>Delete</button>
+            <p className="price">${data.price}</p>
+            <div className="product-buttons">
+                <Link to="/products">
+                    <button className="Details-button">Back to Products</button>
+                </Link>
+                <Link to={`/products/${data.id}/edit`}>
+                    <button className="edit-button">Edit</button>
+                </Link>
+            </div>
         </section>
     );
 };

@@ -6,9 +6,9 @@ import SingleProduct from './components/SingleProduct'
 import Login from './components/login'
 import Navigation from './components/Navigation'
 import { useSelector } from 'react-redux'
-import { selectToken } from './redux/authSlice'
+import { selectToken } from './redux/userSlice'
 import Cart from './components/Cart'
-import Register from './components/Register'
+//import Register from './components/Register'
 import CreateProduct from './components/CreateProduct'
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
             <Route path="/products/:id" element={<SingleProduct />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            
             <Route path="/create-product" element={<CreateProduct />} />
           </Routes>
         </main>

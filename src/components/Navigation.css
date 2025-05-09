@@ -1,6 +1,6 @@
 .navigation {
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #1f2431;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -28,7 +28,7 @@
 }
 
 .nav-link {
-    color: #666;
+    color: #BEC1C6;
     text-decoration: none;
     font-size: 1rem;
     padding: 0.5rem 1rem;
@@ -37,7 +37,7 @@
 }
 
 .nav-link:hover {
-    color: #007bff;
+    color: #2F70FA;
     background-color: rgba(0, 123, 255, 0.1);
 }
 
@@ -52,7 +52,7 @@
 }
 
 .register-button {
-    background-color: #007bff;
+    background-color: #2F70FA;
     color: white;
     border: none;
 }
@@ -62,13 +62,13 @@
 }
 
 .logout-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
+    background-color: #00CEB810;
+    color: #00CEB8;
+    border: 1px solid #00CEB8;
 }
 
 .logout-button:hover {
-    background-color: #c82333;
+    background-color: #00ceb902;
 }
 
 /* Responsive design */

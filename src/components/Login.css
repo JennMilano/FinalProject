@@ -4,13 +4,13 @@
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background-color: #333C4E87;
 }
 
 .login-container h2 {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: #333;
+    color: 333C4E87;
 }
 
 .form-group {
@@ -20,15 +20,16 @@
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #666;
+    color: #667796;
 }
 
 .form-group input {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid #ddd;
+    border: 1px solid 333C4E87;
     border-radius: 4px;
     font-size: 1rem;
+    color: #333C4E87;
 }
 
 .form-group input:focus {
@@ -40,7 +41,7 @@
 button[type="submit"] {
     width: 100%;
     padding: 0.75rem;
-    background-color: #007bff;
+    background-color: #2F70FA;
     color: white;
     border: none;
     border-radius: 4px;
@@ -65,7 +66,7 @@ button[type="submit"]:hover {
 }
 
 .login-container a {
-    color: #007bff;
+    color: #00CEB8;
     text-decoration: none;
 }
 
