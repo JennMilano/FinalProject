@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLoginMutation } from '../api/API';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCredentials, setError } from '../redux/authSlice';
 import './Login.css';
 
 const Login = () => {
@@ -9,22 +11,32 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     
-    const [login, { isLoading }] = useLoginMutation();
+    const [loginMutation, { isLoading }] = useLoginMutation();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
         
         try {
-            const result = await login({ username, password }).unwrap();
+            const result = await loginMutation({ username, password }).unwrap();
 
             if (result.token) {
-                localStorage.setItem('token', result.token);
-                navigate('/');
+                // Dispatch setCredentials action to Redux
+                dispatch(setCredentials({
+                    token: result.token,
+                    user: result.user
+                }));
+                
+                // Navigate to products page
+                navigate('/products');
+            } else {
+                dispatch(setError('Login failed: No token received'));
             }
         } catch (err) {
-            setError(err.data?.message || 'Failed to login. Please try again.');
+            console.error('Login error:', err);
+            dispatch(setError(err.data?.message || 'Failed to login. Please check your credentials and try again.'));
         }
     };
 
@@ -61,7 +73,7 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" className="login-button">Login</button>
             </form>
             <p>
                 Don't have an account? <Link to="/register">Register here</Link>

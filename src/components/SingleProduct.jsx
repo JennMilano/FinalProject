@@ -52,12 +52,15 @@ const SingleProduct = () => {
             <p>{data.description}</p>
             <p className="price">${data.price}</p>
             <div className="product-buttons">
-                <Link to="/products">
+                {/* <Link to="/products">
                     <button className="Details-button">Back to Products</button>
-                </Link>
-                <Link to={`/products/${data.id}/edit`}>
+                </Link> */}
+                {/* <Link to={`/products/${data.id}/edit`}>
                     <button className="edit-button">Edit</button>
-                </Link>
+                </Link> */}
+                <button 
+                    className="add-to-cart-button"
+                    onClick={() => handleAddToCart(product)}>Add to Cart</button>
             </div>
         </section>
     );

@@ -1,13 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectToken } from '../redux/userSlice';
-import { logout } from '../redux/userSlice';
+import { selectToken, logout, getCart } from '../redux/userSlice';
 import './Navigation.css';
 
 function Navigation() {
     const token = useSelector(selectToken);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const cart = useSelector(getCart);
+    const cartItemCount = cart ? cart.reduce((total, item) => total + (item.quantity || 1), 0) : 0;
 
     const handleLogout = () => {
         dispatch(logout());
@@ -18,7 +19,7 @@ function Navigation() {
         <nav className="navigation">
             <div className="nav-content">
                 <div className="nav-left">
-                    <Link to="/" className="nav-link">Home</Link>
+                    <Link to="/products" className="nav-link">Products</Link>
                 </div>
 
                 <div className="nav-right">
@@ -40,6 +41,15 @@ function Navigation() {
                             </Link>
                         </>
                     )}
+                </div>
+
+                <div className="nav-cart">
+                    <Link to="/cart" className="cart-link">
+                        <span className="cart-icon">🛒</span>
+                        {cartItemCount > 0 && (
+                            <span className="cart-count">{cartItemCount}</span>
+                        )}
+                    </Link>
                 </div>
             </div>
         </nav>

@@ -154,7 +154,7 @@ input:focus, textarea:focus {
 .product-info .price {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: #fff;
   margin: 0.5rem 0;
 }
 
@@ -244,7 +244,8 @@ input:focus, textarea:focus {
     display: flex;
     gap: 2rem;
     padding: 1rem;
-    background: white;
+    background: #333C4E87;
+    
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
@@ -276,15 +277,37 @@ input:focus, textarea:focus {
     gap: 1rem;
 }
 
-.quantity-controls input {
+.quantity-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-button {
+    background-color: #00CEB820;
+    border: 1px solid #00CEB8;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #00CEB8
+}
+
+.quantity-button:hover {
+    background-color: #e9ecef;
+}
+
+.quantity-input {
     width: 60px;
     padding: 0.25rem;
     text-align: center;
+    border: 1px solid #00CEB820;
+    border-radius: 4px;
 }
 
 .remove-button {
-    background-color: #e74c3c;
-    color: white;
+    background-color: transparent;
+    color: #00CEB8;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -293,36 +316,59 @@ input:focus, textarea:focus {
 }
 
 .remove-button:hover {
-    background-color: #c0392b;
+    background-color: #00CEB820;
 }
 
 .cart-summary {
     margin-top: 2rem;
     padding: 1rem;
-    background: white;
+    background: #333C4E87;
+    border: 1px solid #3A465B;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    text-align: right;
 }
 
 .cart-summary h3 {
     font-size: 1.5rem;
-    color: #2c3e50;
+    color: #fff;
     margin-bottom: 1rem;
+    align-items: center;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.continue-shopping-button {
+    background-color: transparent;
+    color: #00CEB8;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.continue-shopping-button:hover {
+    background-color: #2F70FA20;
 }
 
 .checkout-button {
-    background-color: #2ecc71;
+    background-color: #2F70FA;
     color: white;
     border: none;
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .checkout-button:hover {
-    background-color: #27ae60;
+    background-color: #2f6ffabc;
 }
 
 .product-buttons {

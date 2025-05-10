@@ -1,6 +1,6 @@
 import { useFetchProductsQuery } from "../api/API";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+import { addToCart } from "../redux/userSlice";
 import { Link } from "react-router-dom";
 
 const Products = () => {
@@ -61,11 +61,11 @@ const Products = () => {
                             <div className="product-info">
                                 <h3>{product.name}</h3>
                                 <p>{product.description}</p>
-                                <p>Price: ${product.price}</p>
+                                <p className="price">${product.price}</p>
                                 <div className="product-buttons">
-                                    <button className="Details-button">
-                                        <Link to={`/products/${product.id}`}>View Details</Link>
-                                    </button>
+                                    <Link to={`/products/${product.id}`}>
+                                        <button className="Details-button">View Details</button>
+                                    </Link>
                                     <button 
                                         className="add-to-cart-button"
                                         onClick={() => handleAddToCart(product)}

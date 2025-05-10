@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, updateQuantity } from '../store/cartSlice';
-import { getCart } from '../redux/userSlice';
+import { removeFromCart, updateQuantity } from '../redux/userSlice';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
@@ -9,11 +8,16 @@ const Cart = () => {
     const cart = useSelector((state) => state.auth.cart);
 
     const handleQuantityChange = (id, quantity) => {
+        if (quantity < 1) return;
         dispatch(updateQuantity({ id, quantity: parseInt(quantity) }));
     };
 
     const handleRemoveItem = (id) => {
         dispatch(removeFromCart(id));
+    };
+
+    const calculateTotal = () => {
+        return cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
     };
 
     if (!cart || cart.length === 0) {
@@ -22,7 +26,7 @@ const Cart = () => {
                 <h2>Your Cart</h2>
                 <p>Your cart is empty</p>
                 <Link to="/products">
-                    <button>Continue Shopping</button>
+                    <button className="continue-shopping-button">Continue Shopping</button>
                 </Link>
             </section>
         );
@@ -41,16 +45,31 @@ const Cart = () => {
                         />
                         <div className="cart-item-details">
                             <h3>{item.name}</h3>
-                            <p>${item.price}</p>
+                            <p className="price">${item.price}</p>
                             <div className="quantity-controls">
                                 <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
-                                <input
-                                    type="number"
-                                    id={`quantity-${item.id}`}
-                                    min="1"
-                                    value={item.quantity || 1}
-                                    onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                                />
+                                <div className="quantity-buttons">
+                                    <button 
+                                        onClick={() => handleQuantityChange(item.id, (item.quantity || 1) - 1)}
+                                        className="quantity-button"
+                                    >
+                                        -
+                                    </button>
+                                    <input
+                                        type="number"
+                                        id={`quantity-${item.id}`}
+                                        min="1"
+                                        value={item.quantity || 1}
+                                        onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                                        className="quantity-input"
+                                    />
+                                    <button 
+                                        onClick={() => handleQuantityChange(item.id, (item.quantity || 1) + 1)}
+                                        className="quantity-button"
+                                    >
+                                        +
+                                    </button>
+                                </div>
                             </div>
                             <button 
                                 onClick={() => handleRemoveItem(item.id)}
@@ -63,8 +82,13 @@ const Cart = () => {
                 ))}
             </div>
             <div className="cart-summary">
-                <h3>Total: ${cart.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0).toFixed(2)}</h3>
-                <button className="checkout-button">Proceed to Checkout</button>
+                <h3>Total: ${calculateTotal().toFixed(2)}</h3>
+                <div className="cart-actions">
+                    <Link to="/products">
+                        <button className="continue-shopping-button">Continue Shopping</button>
+                    </Link>
+                    <button className="checkout-button">Proceed to Checkout</button>
+                </div>
             </div>
         </section>
     );

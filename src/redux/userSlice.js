@@ -28,12 +28,27 @@ const userSlice = createSlice({
             state.cart = action.payload;
         },
         addToCart: (state, action) => {
-            state.cart.push(action.payload);
+            const existingItem = state.cart.find(item => item.id === action.payload.id);
+            if (existingItem) {
+                existingItem.quantity = (existingItem.quantity || 1) + 1;
+            } else {
+                state.cart.push({ ...action.payload, quantity: 1 });
+            }
         },
         removeFromCart: (state, action) => {
             state.cart = state.cart.filter(
                 (product) => product.id !== action.payload
             );
+        },
+        updateQuantity: (state, action) => {
+            const { id, quantity } = action.payload;
+            const item = state.cart.find(item => item.id === id);
+            if (item) {
+                item.quantity = quantity;
+                if (item.quantity <= 0) {
+                    state.cart = state.cart.filter(item => item.id !== id);
+                }
+            }
         },
         logout: (state) => {
             state.user = null;
@@ -56,6 +71,7 @@ export const {
     setCart,
     addToCart,
     removeFromCart,
+    updateQuantity,
     logout,
     login,
     setToken
