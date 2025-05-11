@@ -25,7 +25,7 @@ function Navigation() {
                 <div className="nav-right">
                     {token ? (
                         <>
-                            <Link to="/account" className="nav-link">My Account</Link>
+                    
                             <button 
                                 onClick={handleLogout}
                                 className="nav-button logout-button"
