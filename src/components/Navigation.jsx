@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectToken, logout, getCart } from '../redux/userSlice';
+import { selectToken, logout } from '../redux/authSlice';
 import './Navigation.css';
 
 function Navigation() {
     const token = useSelector(selectToken);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const cart = useSelector(getCart);
+    const cart = useSelector((state) => state.cart.items);
     const cartItemCount = cart ? cart.reduce((total, item) => total + (item.quantity || 1), 0) : 0;
 
     const handleLogout = () => {

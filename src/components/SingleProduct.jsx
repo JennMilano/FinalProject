@@ -2,9 +2,12 @@ import { useParams } from "react-router-dom";
 import React from "react";
 import { useFetchSingleProductQuery } from "../api/API";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 
 const SingleProduct = () => {
     const { id } = useParams();
+    const dispatch = useDispatch();
     
     if (!id) {
         return (
@@ -17,6 +20,10 @@ const SingleProduct = () => {
     }
 
     const { data, isLoading, isError, error } = useFetchSingleProductQuery(id);
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+    };
 
     if (isLoading) {
         return (
@@ -60,7 +67,7 @@ const SingleProduct = () => {
                 </Link> */}
                 <button 
                     className="add-to-cart-button"
-                    onClick={() => handleAddToCart(product)}>Add to Cart</button>
+                    onClick={() => handleAddToCart(data)}>Add to Cart</button>
             </div>
         </section>
     );

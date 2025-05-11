@@ -1,6 +1,6 @@
 import { useFetchProductsQuery } from "../api/API";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/userSlice";
+import { addToCart } from "../store/cartSlice";
 import { Link } from "react-router-dom";
 
 const Products = () => {

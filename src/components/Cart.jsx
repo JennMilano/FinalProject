@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, updateQuantity } from '../redux/userSlice';
+import { removeFromCart, updateQuantity } from '../store/cartSlice';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.auth.cart);
+    const cart = useSelector((state) => state.cart.items);
 
     const handleQuantityChange = (id, quantity) => {
         if (quantity < 1) return;
