@@ -22,7 +22,7 @@ export const api = createApi({
             providesTags: ["Users"],
           }),
         fetchSingleProduct: builder.query({
-            query: (product_id) => `/api/product/${product_id}`,
+            query: (product_id) => `/api/products/${product_id}`,
             providesTags: ["Products"],
         }),
         addToCart: builder.mutation({
