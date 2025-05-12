@@ -41,14 +41,7 @@ export const api = createApi({
             }),
             invalidatesTags: ["Products"],
           }),
-          changeQuantity: builder.mutation({
-            query: ({ user_id, product_id, quantity }) => ({
-              url: `/api/user_cart/${user_id}`,
-              method: "PUT",
-              body: { product_id, quantity },
-            }),
-            invalidatesTags: ["Cart"],
-          }),
+
           editProduct: builder.mutation({
             query: ({ product_id, productData }) => ({
               url: `/api/products/${product_id}`,
@@ -71,6 +64,15 @@ export const api = createApi({
             }),
             invalidatesTags: ["Cart"],
           }),
+
+          reduceCartQuantity: builder.mutation({
+            query: ({ user_id, product_id }) => ({
+              url: `/api/user_cart/${user_id}/${product_id}`,
+              method: "PUT",
+            }),
+            invalidatesTags: ["Cart"],
+          }),
+
           login: builder.mutation({
             query: (credentials) => ({
               url: "/api/login",
@@ -105,12 +107,13 @@ export const {
     useFetchSingleUserQuery,
     useFetchSingleProductQuery,
     useAddToCartMutation,
-    useChangeQuantityMutation,
+
     useEditProductMutation,
     useDeleteProductMutation,
     useRemoveFromCartMutation,
     useLoginMutation,
     useCreateUserMutation,
     useCreateProductMutation,
+    useReduceCartQuantityMutation,
     //useClearCartMutation,
 } = api;

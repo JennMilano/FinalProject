@@ -2,24 +2,29 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../store/cartSlice";
 import { Link } from "react-router-dom";
-import { useFetchCartQuery, useAddToCartMutation } from "../api/API";
+import { useFetchCartQuery, useAddToCartMutation, useReduceCartQuantityMutation } from "../api/API";
 
 const Cart = () => {
   
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
+  
   const { data, isLoading, isError } = useFetchCartQuery(user?.id);
   const [addToCartMutation] = useAddToCartMutation();
-  
-  console.log(data);
+  const [reduceCartQuantityMutation] = useReduceCartQuantityMutation();
+
 
   const handleRemoveItem = (id) => {
     dispatch(removeFromCart(id));
   };
 
   const handleAddToCart = async (item) => {
-    console.log(item);
+
     await addToCartMutation({ user_id: user.id, product_id: item.product_id });
+  };
+
+  const handleReduceCartQuantity = async (item) => {
+
+    await reduceCartQuantityMutation({ user_id: user.id, product_id: item.product_id });
   };
 
   const calculateTotal = () => {
@@ -61,9 +66,8 @@ const Cart = () => {
                 <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
                 <div className="quantity-buttons">
                 <button
-                      onClick={() =>
-                        handleQuantityChange(item.id, (item.quantity || 1) - 1)
-                      }
+                      onClick={() => handleReduceCartQuantity(item)}
+                      
                       className="quantity-button-cart"
                     >
                       -
