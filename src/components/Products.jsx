@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Products = () => {
     const { data, isLoading, isError } = useFetchProductsQuery();
-    const [addToCartMutation] = useAddToCartMutation();s
+    const [addToCartMutation] = useAddToCartMutation();
     const user = useSelector((state) => state.auth.user);
   
     const dispatch = useDispatch();
