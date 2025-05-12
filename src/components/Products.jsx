@@ -1,11 +1,21 @@
-import { useFetchProductsQuery } from "../api/API";
-import { useDispatch } from "react-redux";
+import { useAddToCartMutation, useFetchProductsQuery } from "../api/API";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 import { Link } from "react-router-dom";
 
 const Products = () => {
     const { data, isLoading, isError } = useFetchProductsQuery();
+    const [addToCartMutation] = useAddToCartMutation();s
+    const user = useSelector((state) => state.auth.user);
+  
     const dispatch = useDispatch();
+  
+    const handleAddToCart = async (product) => {
+      console.log(user);
+      console.log(product);
+      await addToCartMutation({ user_id: user.id, product_id: product.id });
+      dispatch(addToCart(product));
+    };
     
 
     const getCorrectImageUrl = (productName) => {
@@ -18,9 +28,6 @@ const Products = () => {
         return imageMap[productName] || "https://placehold.co/300x200?text=No+Image";
     };
 
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product));
-    };
 
  
     if (data) {

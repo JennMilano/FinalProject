@@ -2,13 +2,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectToken, logout } from '../redux/authSlice';
 import './Navigation.css';
+import { useFetchCartQuery } from '../api/API';
 
 function Navigation() {
     const token = useSelector(selectToken);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const cart = useSelector((state) => state.cart.items);
-    const cartItemCount = cart ? cart.reduce((total, item) => total + (item.quantity || 1), 0) : 0;
+    const user = useSelector((state) => state.auth.user);
+    const { data, isLoading, isError } = useFetchCartQuery(user?.id);
+
+    // map over cartt items and add quantity
+    const totalItems =
+    data?.reduce((total, item) => total + item.quantity, 0) || 0;
 
     const handleLogout = () => {
         dispatch(logout());
@@ -46,8 +51,10 @@ function Navigation() {
                 <div className="nav-cart">
                     <Link to="/cart" className="cart-link">
                         <span className="cart-icon">🛒</span>
-                        {cartItemCount > 0 && (
-                            <span className="cart-count">{cartItemCount}</span>
+
+                        {/* checks items and if user exists for log out */}
+                        {totalItems > 0 && user && (
+              <span className="cart-count">{totalItems}</span>
                         )}
                     </Link>
                 </div>
