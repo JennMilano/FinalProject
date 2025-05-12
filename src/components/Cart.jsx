@@ -9,11 +9,17 @@ const Cart = () => {
   const user = useSelector((state) => state.auth.user);
   console.log(user);
   const { data, isLoading, isError } = useFetchCartQuery(user?.id);
-
+  const [addToCartMutation] = useAddToCartMutation();
+  
   console.log(data);
 
   const handleRemoveItem = (id) => {
     dispatch(removeFromCart(id));
+  };
+
+  const handleAddToCart = async (item) => {
+    console.log(item);
+    await addToCartMutation({ user_id: user.id, product_id: item.product_id });
   };
 
   const calculateTotal = () => {
@@ -54,23 +60,26 @@ const Cart = () => {
               <div className="quantity-controls">
                 <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
                 <div className="quantity-buttons">
-                  <button
-                    onClick={() =>
-                      handleQuantityChange(item.id, (item.quantity || 1) - 1)
-                    }
-                    className="quantity-button"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    id={`quantity-${item.id}`}
-                    min="1"
-                    value={item.quantity || 1}
-                    className="quantity-input"
-                  />
-                  <button className="quantity-button">+</button>
+                <button
+                      onClick={() =>
+                        handleQuantityChange(item.id, (item.quantity || 1) - 1)
+                      }
+                      className="quantity-button-cart"
+                    >
+                      -
+                    </button>
                 </div>
+                <div className="quantity-input-container">
+                    {item.quantity}
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleAddToCart(item)}
+                      className="quantity-button-cart"
+                    >
+                      +
+                    </button>
+                  </div>
               </div>
               <button
                 onClick={() => handleRemoveItem(item.id)}

@@ -1,0 +1,14 @@
+.quantity-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .quantity-button-cart {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 20px;
+    border-radius: 5px;
+  }

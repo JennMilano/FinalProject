@@ -69,7 +69,7 @@ const Products = () => {
                                     </Link>
                                     <button 
                                         className="add-to-cart-button"
-                                        onClick={() => handleAddToCart(product)}r
+                                        onClick={() => handleAddToCart(product)}
                                     >
                                         Add to Cart
                                     </button>
