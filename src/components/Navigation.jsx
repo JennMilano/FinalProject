@@ -28,24 +28,30 @@ function Navigation() {
                 </div>
 
                 <div className="nav-right">
-                    {token ? (
-                        <>
-                    
-                            <button 
-                                onClick={handleLogout}
-                                className="nav-button logout-button"
-                            >
-                                Logout
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            <Link to="/login" className="nav-link">Login</Link>
-                            <Link to="/register" className="nav-button register-button">
-                                Register
-                            </Link>
-                        </>
-                    )}
+                {token ? (
+            <>
+              {user.is_admin && (
+                <Link to="/admin" className="nav-link">
+                  Admin
+                </Link>
+              )}
+              <button
+                onClick={handleLogout}
+                className="nav-button logout-button"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
+              <Link to="/register" className="nav-button register-button">
+                Register
+              </Link>
+            </>
+          )}
                 </div>
 
                 <div className="nav-cart">

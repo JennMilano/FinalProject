@@ -11,6 +11,7 @@ import Cart from './components/Cart'
 import Register from './components/Register'
 import CreateProduct from './components/CreateProduct'
 import Checkout from './components/Checkout/Checkout'
+import AdminHome from './components/Admin/AdminHome'
 
 function App() {
   const token = useSelector(selectToken);
@@ -33,6 +34,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/create-product" element={<CreateProduct />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/admin" element={<AdminHome />} />
           </Routes>
         </main>
       </div>
