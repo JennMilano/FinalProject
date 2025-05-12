@@ -14,7 +14,7 @@ export const api = createApi({
             providesTags: ["Users"],
         }),
         fetchCart: builder.query({
-            query: () => "/api/cart",
+            query: (user_id) => `/api/user_cart/${user_id}`,
             providesTags: ["Cart"],
         }),
         fetchSingleUser: builder.query({

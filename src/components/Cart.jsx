@@ -2,10 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, updateQuantity } from '../store/cartSlice';
 import { Link } from 'react-router-dom';
+import { useFetchCartQuery } from '../api/API';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.items);
+
+    const { data, isLoading, isError } = useFetchCartQuery();
+    console.log(data)
 
     const handleQuantityChange = (id, quantity) => {
         if (quantity < 1) return;

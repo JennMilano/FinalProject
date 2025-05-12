@@ -7,7 +7,7 @@ const Products = () => {
     const { data, isLoading, isError } = useFetchProductsQuery();
     const dispatch = useDispatch();
     
-    // Map product names to their correct image URLs
+
     const getCorrectImageUrl = (productName) => {
         const imageMap = {
             "NFL Official Game Football": "https://i5.walmartimages.com/seo/Wilson-The-Duke-NFL-Football_d5908cdb-74bb-4b22-9dbe-056823b52f68.01f80822f0e5d1c489edf76db36fd693.jpeg",
@@ -22,7 +22,7 @@ const Products = () => {
         dispatch(addToCart(product));
     };
 
-    // Add detailed logging
+ 
     if (data) {
         console.log("Full product data:", JSON.stringify(data, null, 2));
     }
@@ -46,6 +46,7 @@ const Products = () => {
                 {data.map((product) => {
                     const correctImageUrl = getCorrectImageUrl(product.name);
                     console.log("Using image URL for", product.name, ":", correctImageUrl);
+                   
                     
                     return (
                         <div key={product.id} className="product-card">
