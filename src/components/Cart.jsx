@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../store/cartSlice";
 import { Link } from "react-router-dom";
-import { useFetchCartQuery, useAddToCartMutation, useReduceCartQuantityMutation } from "../api/API";
+import { useFetchCartQuery, useAddToCartMutation, useReduceCartQuantityMutation, useRemoveFromCartMutation } from "../api/API";
 
 const Cart = () => {
   
@@ -11,19 +11,22 @@ const Cart = () => {
   const { data, isLoading, isError } = useFetchCartQuery(user?.id);
   const [addToCartMutation] = useAddToCartMutation();
   const [reduceCartQuantityMutation] = useReduceCartQuantityMutation();
+  const [removeFromCartMutation] = useRemoveFromCartMutation();
 
 
-  const handleRemoveItem = (id) => {
-    dispatch(removeFromCart(id));
+  const handleRemoveItem = async (id) => {
+    console.log("REMOVE ITEM", id)
+    await removeFromCartMutation({ user_id: user.id, product_id: id });
   };
 
   const handleAddToCart = async (item) => {
-
+console.log("ADD ITEM", item.product_id)
     await addToCartMutation({ user_id: user.id, product_id: item.product_id });
   };
 
-  const handleReduceCartQuantity = async (item) => {
 
+  const handleReduceCartQuantity = async (item) => {
+    console.log("REDUCE ITEM", item.product_id)
     await reduceCartQuantityMutation({ user_id: user.id, product_id: item.product_id });
   };
 
@@ -33,7 +36,7 @@ const Cart = () => {
       0
     );
   };
-
+console.log(data)
   if (!isLoading && data.length === 0) {
     return (
       <section className="cart-container">
@@ -86,7 +89,7 @@ const Cart = () => {
                   </div>
               </div>
               <button
-                onClick={() => handleRemoveItem(item.id)}
+                onClick={() => handleRemoveItem(item.product_id)}
                 className="remove-button"
               >
                 Remove

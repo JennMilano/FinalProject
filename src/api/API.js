@@ -58,7 +58,7 @@ export const api = createApi({
           }),
           removeFromCart: builder.mutation({
             query: ({ user_id, product_id }) => ({
-              url: `/api/user_cart/${user_id}`,
+              url: `/api/user_cart/${user_id}/${product_id}`,
               method: "DELETE",
               body: { product_id },
             }),
