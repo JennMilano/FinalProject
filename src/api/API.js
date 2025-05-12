@@ -97,6 +97,13 @@ export const api = createApi({
             }),
             invalidatesTags: ["Users"],
           }),
+          clearCart: builder.mutation({
+            query: (user_id) => ({
+              url: `/api/user_cart/${user_id}`,
+              method: "DELETE",
+            }),
+            invalidatesTags: ["Cart"],
+          }),
     }),
 });
 
@@ -112,8 +119,8 @@ export const {
     useDeleteProductMutation,
     useRemoveFromCartMutation,
     useLoginMutation,
-    useCreateUserMutation,
+    useCreateUserMutation,  
     useCreateProductMutation,
     useReduceCartQuantityMutation,
-    //useClearCartMutation,
+    useClearCartMutation,
 } = api;

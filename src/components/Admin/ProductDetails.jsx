@@ -1,10 +1,6 @@
 import { useState } from "react";
 import "./productDetails.css";
-import {
-  useFetchProductsQuery,
-  useCreateProductMutation,
-  useDeleteProductMutation,
-} from "../../api/API";
+import { useFetchProductsQuery, useCreateProductMutation, useDeleteProductMutation } from "../../api/API";
 
 const ProductDetails = () => {
   const { data, isLoading, isError } = useFetchProductsQuery();
@@ -17,7 +13,7 @@ const ProductDetails = () => {
     img_url: "",
   });
 
-console.log(product)
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct((prev) => ({

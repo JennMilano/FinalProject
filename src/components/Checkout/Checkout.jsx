@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useFetchCartQuery } from "../../api/API";
+import { useFetchCartQuery, useClearCartMutation } from "../../api/API";
 import "./Checkout.css";
 
 const Checkout = () => {
@@ -16,11 +16,11 @@ const Checkout = () => {
     );
   };
 
-//   const [clearCart] = useClearCartMutation();
-//   const handlePurchase = () => {
-//     clearCart(user?.id);
-//     setHasCheckedOut(true);
-//   };
+  const [clearCart] = useClearCartMutation();
+  const handlePurchase = () => {
+    clearCart(user?.id);
+    setHasCheckedOut(true);
+  };
 
   if (!hasCheckedOut && cartItems) {
     return (
