@@ -4,11 +4,17 @@ import { useFetchSingleProductQuery } from "../api/API";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import { useSelector } from "react-redux";
+import { useAddToCartMutation } from "../api/API";
+
 
 const SingleProduct = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    
+    const user = useSelector((state) => state.auth.user);
+    const [addToCartMutation] = useAddToCartMutation();
+
+
     if (!id) {
         return (
             <section>
@@ -21,9 +27,12 @@ const SingleProduct = () => {
 
     const { data, isLoading, isError, error } = useFetchSingleProductQuery(id);
 
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product));
-    };
+    const handleAddToCart = async (data) => {
+        console.log(user);
+        console.log(data);
+        await addToCartMutation({ user_id: user.id, product_id: data.id });
+        dispatch(addToCart(data));
+      };
 
     if (isLoading) {
         return (
