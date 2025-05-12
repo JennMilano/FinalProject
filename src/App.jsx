@@ -10,6 +10,7 @@ import { selectToken } from './redux/authSlice'
 import Cart from './components/Cart'
 import Register from './components/Register'
 import CreateProduct from './components/CreateProduct'
+import Checkout from './components/Checkout/Checkout'
 
 function App() {
   const token = useSelector(selectToken);
@@ -31,6 +32,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create-product" element={<CreateProduct />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </main>
       </div>

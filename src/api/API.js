@@ -112,4 +112,5 @@ export const {
     useLoginMutation,
     useCreateUserMutation,
     useCreateProductMutation,
+    //useClearCartMutation,
 } = api;
