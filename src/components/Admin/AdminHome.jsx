@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./adminHome.css";
+import UserDetails from "./UserDetails";
 
 
 const AdminHome = () => {
@@ -11,6 +12,7 @@ const AdminHome = () => {
         <button onClick={() => setSelectedPage("users")}>Users</button>
       </div>
 
+      {selectedPage === "users" && <UserDetails />}
     </div>
   );
 };
