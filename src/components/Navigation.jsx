@@ -9,7 +9,7 @@ function Navigation() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
-    const { data, isLoading, isError } = useFetchCartQuery(user?.id);
+    const { data, isLoading, isError, error } = useFetchCartQuery(user?.id);
 
     // map over cartt items and add quantity
     const totalItems =
@@ -19,7 +19,8 @@ function Navigation() {
         dispatch(logout());
         navigate('/');
     };
-
+console.log(data)
+console.log(error)
     return (
         <nav className="navigation">
             <div className="nav-content">
