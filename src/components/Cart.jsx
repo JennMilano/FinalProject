@@ -36,7 +36,21 @@ console.log("ADD ITEM", item.product_id)
       0
     );
   };
-console.log(data)
+
+  if (!user) {
+    return (
+      <section className="cart-container">
+        <h2>Your Cart</h2>
+        <p>Please login to view your cart</p>
+        <Link to="/login">
+          <button className="continue-shopping-button">
+            Login
+          </button>
+        </Link>
+      </section>
+    );
+  }
+
   if (!isLoading && data.length === 0) {
     return (
       <section className="cart-container">
