@@ -29,10 +29,6 @@ const Products = () => {
     };
 
 
- 
-    if (data) {
-        console.log("Full product data:", JSON.stringify(data, null, 2));
-    }
 
     if (isLoading) {
         return <section>
@@ -59,12 +55,9 @@ const Products = () => {
                         <div key={product.id} className="product-card">
                             <img 
                                 className="product-image" 
-                                src={correctImageUrl}
+                                src={product.img_url}
                                 alt={product.name}
-                                onError={(e) => {
-                                    console.error("Failed to load image:", correctImageUrl);
-                                    e.target.src = "https://placehold.co/300x200?text=No+Image";
-                                }}
+                                
                             />
                             <div className="product-info">
                                 <h3>{product.name}</h3>
@@ -76,7 +69,7 @@ const Products = () => {
                                     </Link>
                                     <button 
                                         className="add-to-cart-button"
-                                        onClick={() => handleAddToCart(product)}
+                                        onClick={() => handleAddToCart(product)}r
                                     >
                                         Add to Cart
                                     </button>
