@@ -19,8 +19,8 @@ const UserDetails = () => {
           {data?.map((user) => (
             <tr key={user.id}>
               <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.address}</td>
+              <td>{user.username}</td>
+              <td>{user.mailing_address}</td>
               <td>{user.is_admin ? "Admin" : "User"}</td>
             </tr>
           ))}
