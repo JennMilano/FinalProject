@@ -3,7 +3,7 @@ import "./userDetails.css";
 
 const UserDetails = () => {
   const { data, isLoading, isError } = useFetchUsersQuery();
-  console.log(data);
+
   return (
     <div className="user-details-container">
       <table>

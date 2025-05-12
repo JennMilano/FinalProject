@@ -54,7 +54,7 @@ export const api = createApi({
               url: `/api/products/${product_id}`,
               method: "DELETE",
             }),
-            invalidatesTags: ["Products"],
+            invalidatesTags: ["Products", "Cart"],
           }),
           removeFromCart: builder.mutation({
             query: ({ user_id, product_id }) => ({

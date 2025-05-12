@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./adminHome.css";
 import UserDetails from "./UserDetails";
-
+import ProductDetails from "./ProductDetails";
 
 const AdminHome = () => {
   const [selectedPage, setSelectedPage] = useState("products");
@@ -11,7 +11,7 @@ const AdminHome = () => {
         <button onClick={() => setSelectedPage("products")}>Products</button>
         <button onClick={() => setSelectedPage("users")}>Users</button>
       </div>
-
+      {selectedPage === "products" && <ProductDetails />}
       {selectedPage === "users" && <UserDetails />}
     </div>
   );
