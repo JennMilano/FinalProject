@@ -1,14 +1,17 @@
 services:
-  - type: web
+  - type: static
     name: capstone-frontend
     env: static
-    rootDir: .
     buildCommand: |
-      pwd
-      ls -la
+      echo "Starting build process..."
       npm install
+      echo "Running build..."
       npm run build
+      echo "Build complete. Contents of dist directory:"
+      ls -la dist
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        value: https://capstone-backend-sdbp.onrender.com 
+        value: https://capstone-backend-sdbp.onrender.com
+      - key: NODE_VERSION
+        value: 18.x 
