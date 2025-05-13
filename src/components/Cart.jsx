@@ -8,25 +8,27 @@ const Cart = () => {
   
   const user = useSelector((state) => state.auth.user);
   
-  const { data, isLoading, isError } = useFetchCartQuery(user?.id);
+  const { data, isLoading, isError } = useFetchCartQuery(user?.id, {
+    skip: !user?.id, // skip the query if there's no user ID
+  });
   const [addToCartMutation] = useAddToCartMutation();
   const [reduceCartQuantityMutation] = useReduceCartQuantityMutation();
   const [removeFromCartMutation] = useRemoveFromCartMutation();
 
 
   const handleRemoveItem = async (id) => {
-    console.log("REMOVE ITEM", id)
+
     await removeFromCartMutation({ user_id: user.id, product_id: id });
   };
 
   const handleAddToCart = async (item) => {
-console.log("ADD ITEM", item.product_id)
+
     await addToCartMutation({ user_id: user.id, product_id: item.product_id });
   };
 
 
   const handleReduceCartQuantity = async (item) => {
-    console.log("REDUCE ITEM", item.product_id)
+
     await reduceCartQuantityMutation({ user_id: user.id, product_id: item.product_id });
   };
 

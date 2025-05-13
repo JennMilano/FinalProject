@@ -5,7 +5,9 @@ import "./checkout.css";
 
 const Checkout = () => {
   const user = useSelector((state) => state.auth.user);
-  const { data: cartItems } = useFetchCartQuery(user?.id);
+  const { data: cartItems, isLoading, error } = useFetchCartQuery(user?.id, {
+    skip: !user?.id, // Skip the query if there's no user ID
+  });
   const [hasCheckedOut, setHasCheckedOut] = useState(false);
 
   const calculateTotal = () => {

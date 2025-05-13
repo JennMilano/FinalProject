@@ -4,7 +4,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 console.log('API Base URL:', import.meta.env.VITE_API_URL || "https://capstone-backend-sdbp.onrender.com");
 
 export const api = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL || "https://capstone-backend-sdbp.onrender.com"}),
+    baseQuery: fetchBaseQuery({ 
+        baseUrl: import.meta.env.VITE_API_URL || "https://capstone-backend-sdbp.onrender.com",
+        credentials: 'include',
+        prepareHeaders: (headers, { getState }) => {
+            headers.set("Accept", "application/json");
+            headers.set("Content-Type", "application/json");
+            return headers;
+        }
+    }),
     reducerPath: "api",
     tagTypes: ["Products", "Users", "Cart"],
     endpoints: (builder) => ({
