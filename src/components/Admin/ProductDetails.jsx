@@ -42,7 +42,7 @@ const ProductDetails = () => {
   };
 
   const handleDelete = async (productId) => {
-    console.log(productId);
+
     try {
       await deleteProduct(productId).unwrap();
     } catch (error) {

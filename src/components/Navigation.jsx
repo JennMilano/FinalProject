@@ -19,8 +19,7 @@ function Navigation() {
         dispatch(logout());
         navigate('/');
     };
-console.log(data)
-console.log(error)
+
     return (
         <nav className="navigation">
             <div className="nav-content">

@@ -31,8 +31,7 @@ const SingleProduct = () => {
       navigate("/login");
       return;
     }
-    console.log(user);
-    console.log(data);
+
     await addToCartMutation({ user_id: user.id, product_id: data.id });
     dispatch(addToCart(data));
   };

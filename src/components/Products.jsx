@@ -9,15 +9,14 @@ const Products = () => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
-  console.log(data);
+
 
   const handleAddToCart = async (product) => {
     if (!user) {
       navigate("/login");
       return;
     }
-    console.log(user);
-    console.log(product);
+
     await addToCartMutation({ user_id: user.id, product_id: product.id });
   };
 
