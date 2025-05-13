@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useFetchCartQuery, useClearCartMutation } from "../../api/API";
-import "./Checkout.css";
+import "./checkout.css";
 
 const Checkout = () => {
   const user = useSelector((state) => state.auth.user);
