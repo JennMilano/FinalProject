@@ -6,6 +6,9 @@ Deployed App: https://capstone-d9iz.onrender.com/
 
 Backend Repo: https://github.com/JennMilano/Unit37.git
 
+Test User: test@test.com, password123
+Admin User: admin@admin.com, password123
+
 ## Setup
 
 1. Clone and install:
