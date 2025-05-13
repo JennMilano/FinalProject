@@ -1,17 +1,80 @@
+# Capstone Project
+
 Wireframes: https://www.figma.com/proto/bZYFcJrGtI7EqjoVwc1ud5/Capstone-Wires?page-id=0%3A1&node-id=1-2123&p=f&viewport=-200%2C552%2C0.36&t=GI7rBblVmwhqrJok-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A2123
 
 Deployed App: https://capstone-d9iz.onrender.com/
 
+Backend Repo: https://github.com/JennMilano/Unit37.git
 
-# React + Vite
+## Setup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Clone and install:
+   ```bash
+   git clone https://github.com/JennMilano/Capstone.git
+   cd Capstone
+   npm install
+   ```
 
-Currently, two official plugins are available:
+2. Create `.env` file:
+   ```
+   VITE_API_URL=https://capstone-backend-sdbp.onrender.com
+   ```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. Run the app:
+   ```bash
+   npm run dev
+   ```
 
-## Expanding the ESLint configuration
+4. Open [http://localhost:5173](http://localhost:5173)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- User authentication (login/register)
+- Product browsing and searching
+- Shopping cart functionality
+- User profile management
+- Admin product management
+
+## Tech Stack
+
+- Frontend: React, Redux Toolkit, React Router, Vite
+- Backend: Node.js, Express, PostgreSQL
+- Authentication: JWT
+
+## Prerequisites
+
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+- PostgreSQL (for local development)
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```
+├── src/
+│   ├── api/          # API configuration and endpoints
+│   ├── components/   # React components
+│   ├── redux/        # Redux store and slices
+│   ├── assets/       # Static assets
+│   └── App.jsx       # Main application component
+├── public/           # Public assets
+└── vite.config.js    # Vite configuration
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
