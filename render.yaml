@@ -3,8 +3,12 @@ services:
     name: capstone-frontend
     env: static
     rootDir: .
-    buildCommand: cd . && npm install && npm run build
-    staticPublishPath: ./dist
+    buildCommand: |
+      pwd
+      ls -la
+      npm install
+      npm run build
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         value: https://capstone-backend-sdbp.onrender.com 
