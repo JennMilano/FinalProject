@@ -1,4 +1,4 @@
-/* Reset some default styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -107,10 +107,6 @@ input:focus, textarea:focus {
   flex-direction: column;
 }
 
-/* .product-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-} */
 
 .product-card button {
   margin-top: auto;
@@ -158,24 +154,7 @@ input:focus, textarea:focus {
   margin: 0.5rem 0;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  header {
-    padding: 1rem;
-  }
-  
-  main {
-    padding: 1rem;
-  }
-  
-  section {
-    padding: 1rem;
-  }
-  
-  .product-card {
-    width: 100%; /* Stack cards vertically on mobile */
-  }
-}
+
 
 .single-product-card {
     width: 100%;
